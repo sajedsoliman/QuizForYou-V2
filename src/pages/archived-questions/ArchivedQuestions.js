@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 
 // Material-UI imports 
-import { Container, makeStyles } from '@material-ui/core'
+import { Container, Link, makeStyles, Typography } from '@material-ui/core'
 // Icons
 import { } from '@material-ui/icons'
 
@@ -13,8 +14,10 @@ import useLocalStorage from '../../common-components/hooks/useLocalStorage'
 
 // Components
 import { Question } from '../../components/question/Question'
+import IF from '../../common-components/util/IF'
 
 // info
+import { noArchivedQuestionsMessage } from '../../helpers/info'
 
 // styles
 const useStyles = makeStyles(theme => ({
@@ -43,11 +46,17 @@ export default function ArchivedQuestions(props) {
         return <Question question={question} purpose={"local"} key={index} />
     })
 
+    // the no saved or archived questions message(rendering component)
+    const noSavedQuestions = <Typography>{noArchivedQuestionsMessage}
+        &nbsp;<Link to="/" component={RouterLink}>Quiz</Link></Typography>
+
     return (
         <Container>
-            <div className={classes.questionsGrid}>
-                {mappedQuestions}
-            </div>
+            <IF condition={mappedQuestions.length != 0} elseChildren={noSavedQuestions}>
+                <div className={classes.questionsGrid}>
+                    {mappedQuestions}
+                </div>
+            </IF>
         </Container>
     )
 }

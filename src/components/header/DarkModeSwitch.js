@@ -14,7 +14,6 @@ import { NightsStay, WbSunny } from '@material-ui/icons'
 // styles
 const useStyles = makeStyles(theme => ({
     darkModeSwitchWrapper: {
-        marginLeft: "auto",
         position: "relative",
     },
     switch: {

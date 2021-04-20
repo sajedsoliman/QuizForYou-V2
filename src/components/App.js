@@ -15,6 +15,7 @@ import ArchivedQuestionsProvider from '../contexts/ArchivedQuestions';
 import QuizForYou from './QuizForYou';
 import ArchivedQuestions from '../pages/archived-questions/ArchivedQuestions'
 import Header from './header/Header';
+import SuggestCategory from '../pages/suggest-category/SuggestCategory';
 
 // info
 import { SAVED_QUESTIONS } from '../helpers/info';
@@ -30,7 +31,6 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: 40
     }
 }))
-
 
 
 export default function App(props) {
@@ -67,6 +67,9 @@ export default function App(props) {
                         </Route>
                         <Route path="/saved-questions">
                             <ArchivedQuestions />
+                        </Route>
+                        <Route path="/suggest-category">
+                            <SuggestCategory />
                         </Route>
                     </Switch>
                 </ArchivedQuestionsProvider>

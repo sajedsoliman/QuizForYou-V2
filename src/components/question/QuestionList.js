@@ -13,11 +13,12 @@ import { } from '@material-ui/icons'
 // Hooks
 
 // Others
-import { apiFetch } from '../../helpers/info'
+import { apiFetch, noQuestionsMessage } from '../../helpers/info'
 
 // Components
 import { Question } from './Question'
 import QuestionSkeletonList from '../skeletons/QuestionSkeletonList'
+import IF from '../../common-components/util/IF'
 
 
 // styles
@@ -41,12 +42,27 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         marginBottom: 15,
         marginTop: 50,
+        [theme.breakpoints.down("xs")]: {
+            flexDirection: "column",
+        }
+
     },
     tryAgainBtn: {
         cursor: "pointer"
     },
     shuffler: {
         cursor: "pointer"
+    },
+    statistic: {
+        [theme.breakpoints.down("xs")]: {
+            marginBottom: 5
+        }
+    },
+    noQuestionsMessage: {
+        fontSize: 17,
+        [theme.breakpoints.down("xs")]: {
+            fontSize: 16,
+        }
     }
 }))
 
@@ -90,25 +106,34 @@ export default function QuestionList() {
     }
 
     // Check if the has ended (when a user answer all questions correctly)
-    const isQuizEnded = correctAnswers === questions.length
+    const isQuizEnded = correctAnswers === questions.length && questions.length != 0
 
     // Map through the query questions
     const mappedQuestions = questions.map((question, index) =>
         <Question key={index} increaseCorrectAnswers={handleIncreaseCorrectAnswers} question={question} />)
 
+    // the no questions message(rendering component)
+    const noQuestions = <Typography className={classes.noQuestionsMessage} variant="h6">{noQuestionsMessage}</Typography>
+
+
     return (
         <>
             <div className={classes.statistics}>
-                <Typography>Available Questions: {questions.length}. <Link onClick={handleRestartQuiz} className={classes.shuffler}>Shuffle Questions</Link></Typography>
-                <Typography>Correct Questions: {correctAnswers}</Typography>
+                <Typography className={classes.statistic}>Available Questions: {questions.length}. <Link onClick={handleRestartQuiz} className={classes.shuffler}>Shuffle Questions</Link>
+                </Typography>
+                <Typography className={classes.statistic}>Correct Questions: {correctAnswers}</Typography>
             </div>
-            {isQuizEnded && (
+            <IF condition={!isQuizEnded} elseChildren={
                 <Typography align="center">Congratulations. <Link className={classes.tryAgainBtn} onClick={handleRestartQuiz}>Play Again</Link></Typography>
-            )}
-            <div className={classes.questionsGrid}>
-                {!loading && mappedQuestions}
-                {loading && <QuestionSkeletonList limit={limit} />}
-            </div>
+            }>
+                <IF condition={!loading} elseChildren={<QuestionSkeletonList limit={limit} />}>
+                    <IF condition={!(mappedQuestions.length === 0)} elseChildren={noQuestions}>
+                        <div className={classes.questionsGrid}>
+                            {mappedQuestions}
+                        </div>
+                    </IF>
+                </IF>
+            </IF>
         </>
 
     )

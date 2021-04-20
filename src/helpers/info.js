@@ -8,6 +8,7 @@ const QUIZ_CATEGORIES = [
     "Entertainment: Television",
     "Entertainment: Cartoon & Animations",
     "Entertainment: Japanese Anime & Manga",
+    "Entertainment: Board Games",
     "Science & Nature",
     "Science: Mathematics",
     "Science: Computers",
@@ -31,6 +32,10 @@ const QUESTION_LIMITS = [
 
 const SAVED_QUESTIONS = "saved-questions"
 
+const noArchivedQuestionsMessage = "You have not archived any questions yet. Go do some"
+
+const noQuestionsMessage = "Ops, your sort controls don't meet our data. Try other controls."
+
 const apiFetch = async (category, limit, difficulty) => {
     // get the category id
     const req = await fetch("https://opentdb.com/api_category.php")
@@ -45,5 +50,7 @@ export {
     QUIZ_DIFFICULTIES,
     QUESTION_LIMITS,
     SAVED_QUESTIONS,
-    apiFetch
+    apiFetch,
+    noArchivedQuestionsMessage,
+    noQuestionsMessage
 }

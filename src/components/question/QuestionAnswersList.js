@@ -16,6 +16,16 @@ import Controls from '../../common-components/controls/Controls'
 const useStyles = makeStyles(theme => ({
     answersWrapper: {
         marginTop: 25
+    },
+    radioLabel: {
+        marginRight: 0,
+        borderRadius: 5,
+        "&:hover": {
+            background: "rgb(210 210 210 / 30%)",
+        },
+        "&:active": {
+            background: "rgb(210 210 210 / 20%)",
+        }
     }
 }))
 
@@ -59,9 +69,7 @@ export default function QuestionAnswersList({ question, increaseCorrectAnswers, 
             label: answer, value: answer,
         })),
         radioProps: {
-            // onMouseEnter: (e) => {
-            // },
-            // onMouseLeave: () => setCheckValue(""),
+            className: classes.radioLabel
         }
     }
 
