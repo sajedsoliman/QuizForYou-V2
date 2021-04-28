@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 
 // Redux
 
-// Material-UI imports 
-import { Container, Divider, makeStyles } from '@material-ui/core'
+// Material-UI imports
+import { Container, Divider, makeStyles } from "@material-ui/core";
 // Icons
 
 // Contexts
@@ -11,29 +11,26 @@ import { Container, Divider, makeStyles } from '@material-ui/core'
 // Hooks
 
 // Components
-import QuizControls from './QuizControls'
-import QuestionList from './question/QuestionList'
+import QuizControls from "./QuizControls";
+import QuestionList from "./question/QuestionList";
+import AppPage from "../pages/AppPage";
 
 // styles
-const useStyles = makeStyles(theme => ({
-
-}))
+const useStyles = makeStyles((theme) => ({}));
 
 export default function QuizForYou({ toggleDarkMode }) {
-    const classes = useStyles()
+	const classes = useStyles();
 
-    return (
-        <div>
-            <Container>
-                {/* Quiz Controls => limit, category, difficulty */}
-                <QuizControls />
+	return (
+		<AppPage>
+			{/* Quiz Controls => limit, category, difficulty */}
+			<QuizControls />
 
-                {/*  divider */}
-                <Divider />
+			{/*  divider */}
+			<Divider />
 
-                {/* Question List of cards */}
-                <QuestionList />
-            </Container>
-        </div>
-    )
+			{/* Question List of cards */}
+			<QuestionList />
+		</AppPage>
+	);
 }
