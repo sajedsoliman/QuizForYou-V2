@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 		position: "absolute",
 		height: "100%",
 		width: "100%",
-		backgroundColor: "rgba(0,0,0,.4)",
+		backgroundColor: "rgba(0,0,0,.55)",
 		zIndex: 2,
 	},
 }));
