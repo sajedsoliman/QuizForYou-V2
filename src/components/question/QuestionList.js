@@ -6,18 +6,9 @@ import { useSelector } from "react-redux";
 // Material-UI imports
 import { Link, makeStyles, Typography } from "@material-ui/core";
 // Icons
-import {} from "@material-ui/icons";
-
-// Contexts
-
-// Hooks
 
 // Others
-import {
-	apiFetch,
-	getCoverBasedOnCategory,
-	noQuestionsMessage,
-} from "../../helpers/info";
+import { apiFetch, noQuestionsMessage } from "../../helpers/info";
 
 // Components
 import { Question } from "./Question";
@@ -105,7 +96,7 @@ export default function QuestionList() {
 	};
 
 	// a listener for controls changing
-	useEffect(async () => {
+	useEffect(() => {
 		fetchQuestions(category, limit, difficulty.toLowerCase());
 	}, [category, limit, difficulty]);
 
@@ -134,9 +125,18 @@ export default function QuestionList() {
 	));
 
 	// the no questions message(rendering component)
-	const noQuestions = (
+	const noQuestionsMsg = (
 		<Typography className={classes.noQuestionsMessage} variant="h6">
 			{noQuestionsMessage}
+		</Typography>
+	);
+
+	const quizEndedMsg = (
+		<Typography align="center">
+			Congratulations.{" "}
+			<Link className={classes.tryAgainBtn} onClick={handleRestartQuiz}>
+				Play Again
+			</Link>
 		</Typography>
 	);
 
@@ -153,28 +153,20 @@ export default function QuestionList() {
 					Correct Questions: {correctAnswers}
 				</Typography>
 			</div>
-			<IF
-				condition={!isQuizEnded}
-				elseChildren={
-					<Typography align="center">
-						Congratulations.{" "}
-						<Link className={classes.tryAgainBtn} onClick={handleRestartQuiz}>
-							Play Again
-						</Link>
-					</Typography>
-				}
-			>
-				<IF
-					condition={!loading}
-					elseChildren={<QuestionSkeletonList limit={limit} />}
-				>
+			<IF condition={!isQuizEnded} elseChildren={quizEndedMsg}>
+				<div className={classes.questionsGrid}>
 					<IF
-						condition={!(mappedQuestions.length === 0)}
-						elseChildren={noQuestions}
+						condition={!loading}
+						elseChildren={<QuestionSkeletonList skeletonsCount={limit} />}
 					>
-						<div className={classes.questionsGrid}>{mappedQuestions}</div>
+						<IF
+							condition={!(mappedQuestions.length === 0)}
+							elseChildren={noQuestionsMsg}
+						>
+							{mappedQuestions}
+						</IF>
 					</IF>
-				</IF>
+				</div>
 			</IF>
 		</>
 	);

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // Material-UI imports
 import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core";
 // Icons
-import {} from "@material-ui/icons";
 
 // Contexts
 import ArchivedQuestionsProvider from "../contexts/ArchivedQuestions";
@@ -20,7 +19,7 @@ import Header from "./header/Header";
 import SuggestCategory from "../pages/suggest-category/SuggestCategory";
 
 // info
-import { getCoverBasedOnCategory, SAVED_QUESTIONS } from "../helpers/info";
+import { getCoverBasedOnCategory } from "../helpers/info";
 
 // Styles - normalize
 import "normalize.css";
@@ -36,12 +35,12 @@ const useStyles = makeStyles((theme) => ({
 		position: "absolute",
 		height: "100%",
 		width: "100%",
-		backgroundColor: "rgba(0,0,0,.55)",
+		backgroundColor: "rgba(0,0,0,.5)",
 		zIndex: 2,
 	},
 }));
 
-export default function App(props) {
+export default function App() {
 	const classes = useStyles();
 
 	// Import category to set the background of it based on the current category

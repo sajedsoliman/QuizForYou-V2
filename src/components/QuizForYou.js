@@ -1,26 +1,15 @@
-import React, { useState, useEffect } from "react";
-
-// Redux
+import React from "react";
 
 // Material-UI imports
-import { Container, Divider, makeStyles } from "@material-ui/core";
+import { Divider } from "@material-ui/core";
 // Icons
-
-// Contexts
-
-// Hooks
 
 // Components
 import QuizControls from "./QuizControls";
 import QuestionList from "./question/QuestionList";
 import AppPage from "../pages/AppPage";
 
-// styles
-const useStyles = makeStyles((theme) => ({}));
-
-export default function QuizForYou({ toggleDarkMode }) {
-	const classes = useStyles();
-
+export default function QuizForYou() {
 	return (
 		<AppPage>
 			{/* Quiz Controls => limit, category, difficulty */}

@@ -1,31 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React from "react";
 
-// Material-UI imports 
-import { makeStyles } from '@material-ui/core'
+// Material-UI imports
+import { makeStyles } from "@material-ui/core";
 // Icons
-import { } from '@material-ui/icons'
-
-// Contexts
-
-// Hooks
+import {} from "@material-ui/icons";
 
 // Components
-import QuestionSkeleton from './QuestionSkeleton'
+import QuestionSkeleton from "./QuestionSkeleton";
 
 // styles
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({}));
 
-}))
+export default function QuestionSkeletonList({ skeletonsCount }) {
+	const classes = useStyles();
 
-export default function QuestionSkeletonList({ limit }) {
-    const classes = useStyles()
+	// create blank question cards
+	const mappedSkeletons = Array.from({ length: skeletonsCount }).map(
+		(value, index) => <QuestionSkeleton key={index} />
+	);
 
-    // create blank question cards
-    const mappedSkeletons = Array.from({ length: limit }).map((value, index) => <QuestionSkeleton key={index} />)
-
-    return (
-        <>
-            {mappedSkeletons}
-        </>
-    )
+	return <>{mappedSkeletons}</>;
 }

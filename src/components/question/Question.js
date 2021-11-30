@@ -1,36 +1,18 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState } from "react";
 
 // Material-UI imports
-import {
-	Card,
-	Collapse,
-	makeStyles,
-	Typography,
-	useTheme,
-} from "@material-ui/core";
-import clsx from "clsx";
+import { Collapse, makeStyles, Typography, useTheme } from "@material-ui/core";
 // Icons
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 
-// Contexts
-
-// Hooks
-
 // Components
 import Flippy, { FrontSide, BackSide } from "react-flippy";
-import Controls from "../../common-components/controls/Controls";
 import IF from "../../common-components/util/IF";
 import QuestionActions from "./QuestionActions";
 import QuestionAnswersList from "./QuestionAnswersList";
 
 // styles
 const useStyles = makeStyles((theme) => ({
-	card: {
-		position: "relative",
-		"&.correct": {
-			transform: "translate3d(0,0,15px)",
-		},
-	},
 	questionTitle: {
 		marginBottom: 5,
 	},
@@ -46,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 		width: 30,
 		height: 30,
 		borderRadius: 50,
-		background: "rgb(255 255 255)",
+		background: "#10101094",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
@@ -79,12 +61,12 @@ export const Question = React.memo(
 				flipOnClick={false}
 				style={{
 					border: darkMode && "1px solid rgb(255 255 255 / 13%)",
-					borderRadius: 10 /* ...(flipped && result == "Right" ? { transform: "translate3d(0,0,15px)" } : null) */,
+					borderRadius: 10,
 				}}
 			>
 				<FrontSide
 					style={{
-						backgroundColor: "rgb(193 187 187 / 58%)",
+						backgroundColor: "#10101094",
 						borderRadius: 10,
 					}}
 				>
